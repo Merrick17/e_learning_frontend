@@ -7,6 +7,10 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Admin from './pages/admin/Admin'
 import PrivateRoute from './components/PrivateRoute'
+import Formateur from './pages/formateur/Formateur'
+import Etudiant from './pages/etudiant/Etudiant'
+import Formation from './pages/admin/Formation'
+import FormationPage from './pages/Formation'
 const App = () => {
   return (
     <div className="h-screen">
@@ -14,8 +18,11 @@ const App = () => {
       <Router>
         <Header />
         <Switch>
-          <PrivateRoute path="/admin" component={Admin}/>
-          <Route path="/register" component={Register}/>
+          <PrivateRoute path="/etudiant" component={Etudiant} />
+          <PrivateRoute path="/formateur" component={Formateur} />
+          <PrivateRoute path="/admin" component={Admin} />
+          <Route path="/formation" component={FormationPage}/>
+          <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/" component={Home} />
         </Switch>

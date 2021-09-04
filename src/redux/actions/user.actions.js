@@ -1,5 +1,5 @@
 import { getApi, postApi, removeApi } from "../../utils/apiHelpers"
-import { ADD_USER, ADD_USER_SUCCESS, GET_USERS, GET_USERS_SUCCESS } from "../actionTypes"
+import { ADD_USER, ADD_USER_SUCCESS, GET_USERS, GET_USERS_SUCCESS, UPDATE_USER } from "../actionTypes"
 
 const addUser = () => {
     return {
@@ -22,6 +22,12 @@ const getUsersListSuccess = (data) => {
     return {
         type: GET_USERS_SUCCESS,
         payload: data
+    }
+}
+export const editUser = (payload) => {
+    return {
+        type: UPDATE_USER,
+        payload: payload
     }
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <div className="container items-center ">
+        <div className="container items-center w-full " >
             <footer className="text-blueGray-700 transition duration-500 ease-in-out transform bg-white  rounded-lg ">
                 <div className="flex flex-col flex-wrap justify-center p-5 md:flex-row">
                     <nav className="flex flex-wrap items-center justify-center w-full mx-auto mb-6 text-base nprd">

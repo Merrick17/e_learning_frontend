@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, Route, Switch, useRouteMatch, useLocation } from "react-router-dom";
-import Categories from "./Categories";
-import Formation from "./Formation";
-import Reclamation from "./Reclamation";
-import User from "./User";
-const Admin = () => {
+
+const Formateur = () => {
     const { path, url } = useRouteMatch();
     const location = useLocation();
     useEffect(() => {
@@ -61,10 +58,10 @@ const Admin = () => {
                 {/* Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border */}
                 <div className="w-full h-full rounded border-dashed border-2 border-gray-300">
                     <Switch>
-                        <Route path="/admin/reclamation" component={Reclamation}/>
+                        {/* <Route path="/admin/reclamation" component={Reclamation}/>
                         <Route path="/admin/categories" component={Categories}/>
                         <Route path="/admin/formation" component={Formation} />
-                        <Route path="/admin" component={User} />
+                        <Route path="/admin" component={User} /> */}
                     </Switch>
                 </div>
             </div>
@@ -72,4 +69,4 @@ const Admin = () => {
     );
 }
 
-export default Admin;
+export default Formateur;

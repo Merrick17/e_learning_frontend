@@ -1,8 +1,9 @@
-import { ADD_USER, ADD_USER_SUCCESS, GET_USERS, GET_USERS_SUCCESS } from "../actionTypes";
+import { ADD_USER, ADD_USER_SUCCESS, GET_USERS, GET_USERS_SUCCESS, UPDATE_USER } from "../actionTypes";
 
 const userInitState = {
     list: [],
     loading: false,
+    selectedUser: {}
 }
 
 const userReducer = (state = userInitState, action) => {
@@ -17,6 +18,8 @@ const userReducer = (state = userInitState, action) => {
             return { ...state, loading: true }
         case GET_USERS_SUCCESS:
             return { ...state, loading: false, list: payload }
+        case UPDATE_USER:
+            return { ...state, selectedUser: payload }
 
         default:
             return state;
