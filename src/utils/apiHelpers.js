@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const BASE_URL = "http://localhost:5000"
+export const BASE_URL = "http://localhost:5000"
 
 
 export const postApi = async (url, body, config = {}) => {

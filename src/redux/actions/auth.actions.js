@@ -23,7 +23,16 @@ export const loginUserApi = (body, navigation) => async dispatch => {
         if (result) {
             localStorage.setItem('token', result.token);
             dispatch(loginUserSuccess(result));
-            navigation.replace('/admin');
+
+            switch (result.user.role) {
+                case 0:
+                    navigation.replace('/etudiant');
+                case 1:
+                    navigation.replace('/admin');
+                case 2:
+                    navigation.replace('/formateur');
+            }
+
         } else {
             Swal.fire({
                 title: 'Error',
