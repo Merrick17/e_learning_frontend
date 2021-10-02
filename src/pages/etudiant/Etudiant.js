@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
 import { Link, Route, Switch, useRouteMatch, useLocation } from "react-router-dom";
+import Cart from "./Cart";
+import CourseList from "./CourseList";
+import ExamPage from "./ExamPage";
+import MyCourse from "./MyCourses";
 
 const Etudiant = () => {
     const { path, url } = useRouteMatch();
@@ -17,30 +21,38 @@ const Etudiant = () => {
                     <div className="flex flex-col sm:flex-row sm:justify-around">
                         <div className="w-72 h-screen">
                             <nav className="mt-10 px-6 ">
-                                <Link className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/admin' ? 'bg-gray-100' : ''}`} to={`${url}`}>
+                                <Link className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/etudiant' ? 'bg-gray-100' : ''}`} to={`${url}`}>
                                     <span className="mx-4 text-lg font-normal">
-                                        Utilisateurs
+                                        Liste des Cours
                                     </span>
                                     <span className="flex-grow text-right">
                                     </span>
                                 </Link>
-                                <Link className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/admin/formation' ? 'bg-gray-100' : ''}`} to={`${url}/formation`}>
+                                <Link to="/etudiant/panier" className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/etudiant/panier' ? 'bg-gray-100' : ''}`}>
                                     <span className="mx-4 text-lg font-normal">
-                                        Formations
+                                        Mon Panier
                                     </span>
                                     <span className="flex-grow text-right">
                                     </span>
                                 </Link>
-                                <Link to="/admin/reclamation" className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/admin/reclamation' ? 'bg-gray-100' : ''}`} >
+                                <Link className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/etudiant/formation' ? 'bg-gray-100' : ''}`} to={`${url}/formation`}>
                                     <span className="mx-4 text-lg font-normal">
-                                        Réclamations
+                                        Mes Formations
                                     </span>
                                     <span className="flex-grow text-right">
                                     </span>
                                 </Link>
-                                <Link  to="/admin/categories" className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/admin/categories' ? 'bg-gray-100' : ''}`}>
+
+                                <Link to="/etudiant/reclamation" className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/etudiant/reclamation' ? 'bg-gray-100' : ''}`} >
                                     <span className="mx-4 text-lg font-normal">
-                                        Categories
+                                        Ajouter Reclamations
+                                    </span>
+                                    <span className="flex-grow text-right">
+                                    </span>
+                                </Link>
+                                <Link to="/etudiant/categories" className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/etudiant/categories' ? 'bg-gray-100' : ''}`}>
+                                    <span className="mx-4 text-lg font-normal">
+                                        Historique
                                     </span>
                                     <span className="flex-grow text-right">
                                     </span>
@@ -55,13 +67,15 @@ const Etudiant = () => {
             {/* Sidebar ends */}
             {/* Remove class [ h-64 ] when adding a card block */}
             <div className="container mx-auto py-10 h-screen md:w-4/5 w-screen px-6">
-                {/* Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border */}
-                <div className="w-full h-full rounded border-dashed border-2 border-gray-300">
+                {/* Remove class [   border-gray-300 ] to remove dotted border */}
+                <div className="w-full h-full rounded   border-gray-300">
                     <Switch>
-                        {/* <Route path="/admin/reclamation" component={Reclamation}/>
-                        <Route path="/admin/categories" component={Categories}/>
-                        <Route path="/admin/formation" component={Formation} />
-                        <Route path="/admin" component={User} /> */}
+                        {/* <Route path="/etudiant/reclamation" component={Reclamation}/>
+                        <Route path="/etudiant/categories" component={Categories}/>*/}
+                        <Route path="/etudiant/exam/:course" component={ExamPage} />
+                        <Route path="/etudiant/formation" component={MyCourse} />
+                        <Route path="/etudiant/panier" component={Cart} />
+                        <Route path="/etudiant" component={CourseList} />
                     </Switch>
                 </div>
             </div>

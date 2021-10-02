@@ -11,6 +11,7 @@ import Formateur from './pages/formateur/Formateur'
 import Etudiant from './pages/etudiant/Etudiant'
 import Formation from './pages/admin/Formation'
 import FormationPage from './pages/Formation'
+
 const App = () => {
   return (
     <div className="h-screen">
@@ -26,7 +27,7 @@ const App = () => {
           <Route path="/login" component={Login} />
           <Route path="/" component={Home} />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
 
     </div>

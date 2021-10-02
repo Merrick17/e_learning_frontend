@@ -1,5 +1,6 @@
-import { getApi, postApi, removeApi } from "../../utils/apiHelpers"
-import { ADD_USER, ADD_USER_SUCCESS, GET_USERS, GET_USERS_SUCCESS, UPDATE_USER } from "../actionTypes"
+import Swal from "sweetalert2"
+import { getApi, postApi, removeApi, updateApi } from "../../utils/apiHelpers"
+import { ADD_USER, ADD_USER_SUCCESS, GET_USERS, GET_USERS_SUCCESS, UPDATE_USER, UPDATE_USER_CART } from "../actionTypes"
 
 const addUser = () => {
     return {
@@ -31,6 +32,12 @@ export const editUser = (payload) => {
     }
 }
 
+const updateUserData = (data) => {
+    return {
+        type: UPDATE_USER_CART,
+        payload: data
+    }
+}
 export const getUserListApi = () => async dispatch => {
     try {
         dispatch(getUsersList());
@@ -39,7 +46,7 @@ export const getUserListApi = () => async dispatch => {
                 'Authorization': localStorage.getItem('token')
             }
         }
-        let result = await getApi('user/list', config);
+        let result = await getApi('api/user/list', config);
         if (result && result.success) {
             dispatch(getUsersListSuccess(result.result))
         }
@@ -55,7 +62,7 @@ export const deleteUserApi = (id) => async dispatch => {
                 'Authorization': localStorage.getItem('token')
             }
         }
-        let result = await removeApi('user/delete/' + id, config);
+        let result = await removeApi('api/user/delete/' + id, config);
         console.log(result);
         if (result) {
             dispatch(getUserListApi());
@@ -67,9 +74,79 @@ export const deleteUserApi = (id) => async dispatch => {
 export const addUserApi = (data) => async dispatch => {
     try {
         dispatch(addUser());
-        let result = await postApi('user/addnewuser', data);
+        let result = await postApi('api/user/addnewuser', data);
         console.log("RESULT", result);
         dispatch(addUserSuccess());
+        dispatch(getUserListApi()) ; 
+    } catch (error) {
+
+    }
+}
+export const addToCart = (id, data) => async dispatch => {
+
+    try {
+        let config = {
+            headers: {
+                'Authorization': localStorage.getItem('token')
+            }
+        }
+        let result = await updateApi('api/user/addtocart/' + id, data, config);
+        dispatch(getUserCart(id));
+        Swal.fire(
+            'Success!',
+            'Cours ajouté à votre panier!',
+            'success'
+        )
+
+    } catch (error) {
+
+    }
+}
+
+export const getUserCart = (id) => async dispatch => {
+    try {
+        let config = {
+            headers: {
+                'Authorization': localStorage.getItem('token')
+            }
+        }
+        let result = await getApi('api/user/cart/' + id, config);
+        dispatch({
+            type: UPDATE_USER_CART,
+            payload: result.result
+        });
+        console.log("RESULT", result);
+    } catch (error) {
+
+    }
+}
+
+export const deleteItemFromCart = (id, courseId) => async dispatch => {
+    try {
+        let config = {
+            headers: {
+                'Authorization': localStorage.getItem('token')
+            }
+        }
+        let result = await removeApi(`api/user/deletecart/${id}/${courseId}`, config);
+        dispatch(getUserCart(id));
+        console.log("RESULT", result);
+    } catch (error) {
+
+    }
+}
+
+export const confirmPayment = (id) => async dispatch => {
+
+    try {
+        let config = {
+            headers: {
+                'Authorization': localStorage.getItem('token')
+            }
+        }
+        let result = await getApi(`api/user/confirm/${id}`, config);
+        dispatch(getUserCart(id));
+        console.log("RESULT", result);
     } catch (error) {
 
     }

@@ -1,4 +1,4 @@
-import { LOGIN_USER, LOGIN_USER_SUCCESS } from "../actionTypes";
+import { LOGIN_USER, LOGIN_USER_SUCCESS, UPDATE_USER_CART } from "../actionTypes";
 
 const authState = {
     token: '',
@@ -14,6 +14,8 @@ const authReducer = (state = authState, action) => {
             return { ...state, loading: true }
         case LOGIN_USER_SUCCESS:
             return { ...state, loading: false, token: payload.token, userData: payload.user }
+        case UPDATE_USER_CART:
+            return { ...state, userData: payload }
 
         default:
             return state;

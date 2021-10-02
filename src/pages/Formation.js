@@ -149,9 +149,9 @@ const FormationPage = () => {
                 </div>
 
             </div>
-            <section class="text-blueGray-700 ">
-                <div class="container items-center px-5 py-8 mx-auto lg:px-10">
-                    <div class="flex flex-wrap mb-12 text-left">
+            <section className="text-blueGray-700 ">
+                <div className="container items-center px-5 py-8 mx-auto lg:px-10">
+                    <div className="flex flex-wrap mb-12 text-left">
                         {
                             dummyData.map((elm) => <CoursCard name={'test product'} description={"test desc"} imgUrl={elm.url} price={20} />)
                         }

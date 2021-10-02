@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addUserApi } from '../redux/actions/user.actions';
 import { useForm } from "react-hook-form";
 import { addCourseApi } from '../redux/actions/course.actions';
+import { useEffect } from 'react';
 const AddCourseModal = ({ show, closeModal }) => {
 
     const dispatch = useDispatch();
@@ -14,7 +15,16 @@ const AddCourseModal = ({ show, closeModal }) => {
     const [Instructor, setInscructor] = useState('');
     const [categ, setSetCateg] = useState('');
     const [price, setPrice] = useState(0);
-
+    useEffect(() => {
+        setInscructor(userState.list[0] ? userState.list[0]._id : "");
+        setSetCateg(categoryState.list[0] ? categoryState.list[0]._id : "");
+    }, [userState,categoryState])
+    const getInstructorList = () => {
+        let list = userState.list.filter(elm => elm.role === 2);
+        return list.map((elm) => {
+            return <option value={elm._id}>{elm.name}</option>
+        })
+    }
     const confirmAdd = () => {
         // title, desc, Instructor, category, price 
         let formData = new FormData();
@@ -80,9 +90,10 @@ const AddCourseModal = ({ show, closeModal }) => {
                                                     setInscructor(event.target.value)
                                                 }} className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" >
                                                     {
-                                                        userState.list.map((elm) => {
-                                                            return <option value={elm._id}>{elm.name}</option>
-                                                        })
+                                                        // userState.list.map((elm) => {
+                                                        //     return <option value={elm._id}>{elm.name}</option>
+                                                        // })
+                                                        getInstructorList()
                                                     }
 
                                                 </select>
@@ -96,6 +107,7 @@ const AddCourseModal = ({ show, closeModal }) => {
                                                         categoryState.list.map((elm) => {
                                                             return <option value={elm._id}>{elm.name}</option>
                                                         })
+
                                                     }
                                                 </select>
                                             </div>

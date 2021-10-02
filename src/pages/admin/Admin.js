@@ -58,8 +58,8 @@ const Admin = () => {
             {/* Sidebar ends */}
             {/* Remove class [ h-64 ] when adding a card block */}
             <div className="container mx-auto py-10 h-screen md:w-4/5 w-screen px-6">
-                {/* Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border */}
-                <div className="w-full h-full rounded border-dashed border-2 border-gray-300">
+                {/* Remove class [   border-gray-300 ] to remove dotted border */}
+                <div className="w-full h-full rounded   border-gray-300">
                     <Switch>
                         <Route path="/admin/reclamation" component={Reclamation}/>
                         <Route path="/admin/categories" component={Categories}/>

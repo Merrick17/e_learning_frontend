@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, Route, Switch, useRouteMatch, useLocation } from "react-router-dom";
 import DetailsFromations from "./DetailsFromations";
+import QuestionsList from "./Questions";
 
 const Formateur = () => {
     const { path, url } = useRouteMatch();
@@ -20,14 +21,14 @@ const Formateur = () => {
                             <nav className="mt-10 px-6 ">
                                 <Link className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/formateur' ? 'bg-gray-100' : ''}`} to={`${url}`}>
                                     <span className="mx-4 text-lg font-normal">
-                                        Etudiants
+                                        Formations
                                     </span>
                                     <span className="flex-grow text-right">
                                     </span>
                                 </Link>
-                                <Link className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/formateur/formation' ? 'bg-gray-100' : ''}`} to={`${url}/formation`}>
+                                <Link className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/formateur/questions' ? 'bg-gray-100' : ''}`} to={`${url}/questions`}>
                                     <span className="mx-4 text-lg font-normal">
-                                        Formations
+                                        Questions
                                     </span>
                                     <span className="flex-grow text-right">
                                     </span>
@@ -56,13 +57,13 @@ const Formateur = () => {
             {/* Sidebar ends */}
             {/* Remove class [ h-64 ] when adding a card block */}
             <div className="container mx-auto py-10 h-screen md:w-4/5 w-screen px-6">
-                {/* Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border */}
-                <div className="w-full h-full rounded border-dashed border-2 border-gray-300">
+                {/* Remove class [   border-gray-300 ] to remove dotted border */}
+                <div className="w-full h-full rounded   border-gray-300">
                     <Switch>
-                        {/* <Route path="/formateur/reclamation" component={Reclamation}/>
-                        <Route path="/formateur/categories" component={Categories}/> */}
+                        <Route path="/formateur/questions" component={QuestionsList} />
                         <Route path="/formateur" component={DetailsFromations} />
-                        {/* <Route path="/formateur" component={User} /> */}
+
+
                     </Switch>
                 </div>
             </div>

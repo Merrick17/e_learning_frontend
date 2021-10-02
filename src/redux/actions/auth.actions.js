@@ -18,20 +18,30 @@ const loginUserSuccess = (data) => {
 export const loginUserApi = (body, navigation) => async dispatch => {
     try {
         dispatch(loginUser())
-        let result = await postApi('user/login', body);
+        let result = await postApi('api/user/login', body);
         console.log("RESULT", result);
         if (result) {
             localStorage.setItem('token', result.token);
-            dispatch(loginUserSuccess(result));
+            console.log("ROLE", result.user.role);
+            let role = result.user.role;
+            // switch (result.user.role) {
 
-            switch (result.user.role) {
-                case 0:
-                    navigation.replace('/etudiant');
-                case 1:
-                    navigation.replace('/admin');
-                case 2:
-                    navigation.replace('/formateur');
+            //     case 0:
+            //         console.log("I AM HERE")
+            //         navigation.replace('/etudiant');
+            //     case 1:
+            //         navigation.replace('/admin');
+            //     case 2:
+            //         navigation.replace('/formateur');
+            // }
+            if (role === 0) {
+                navigation.replace('/etudiant');
+            } else if (role === 1) {
+                navigation.replace('/admin');
+            } else {
+                navigation.replace('/formateur');
             }
+            dispatch(loginUserSuccess(result));
 
         } else {
             Swal.fire({
@@ -51,7 +61,7 @@ export const loginUserApi = (body, navigation) => async dispatch => {
 export const registerUserApi = (body) => async dispatch => {
     try {
 
-        let result = await postApi('user/register', body);
+        let result = await postApi('api/user/register', body);
         console.log("RESULT", result);
         if (result) {
             Swal.fire({
