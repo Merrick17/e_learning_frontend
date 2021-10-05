@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, Route, Switch, useRouteMatch, useLocation } from "react-router-dom";
+import MonProfil from "../MonProfil";
 import DetailsFromations from "./DetailsFromations";
 import QuestionsList from "./Questions";
 
@@ -60,6 +61,7 @@ const Formateur = () => {
                 {/* Remove class [   border-gray-300 ] to remove dotted border */}
                 <div className="w-full h-full rounded   border-gray-300">
                     <Switch>
+                        <Route path="/formateur/profile/:id" component={MonProfil} />
                         <Route path="/formateur/questions" component={QuestionsList} />
                         <Route path="/formateur" component={DetailsFromations} />
 

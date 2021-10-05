@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { Link, Route, Switch, useRouteMatch, useLocation } from "react-router-dom";
+import MonProfil from "../MonProfil";
 import Cart from "./Cart";
 import CourseList from "./CourseList";
 import ExamPage from "./ExamPage";
 import MyCourse from "./MyCourses";
+
 
 const Etudiant = () => {
     const { path, url } = useRouteMatch();
@@ -43,20 +45,14 @@ const Etudiant = () => {
                                     </span>
                                 </Link>
 
-                                <Link to="/etudiant/reclamation" className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/etudiant/reclamation' ? 'bg-gray-100' : ''}`} >
-                                    <span className="mx-4 text-lg font-normal">
-                                        Ajouter Reclamations
-                                    </span>
-                                    <span className="flex-grow text-right">
-                                    </span>
-                                </Link>
-                                <Link to="/etudiant/categories" className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/etudiant/categories' ? 'bg-gray-100' : ''}`}>
+
+                                {/* <Link to="/etudiant/categories" className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/etudiant/categories' ? 'bg-gray-100' : ''}`}>
                                     <span className="mx-4 text-lg font-normal">
                                         Historique
                                     </span>
                                     <span className="flex-grow text-right">
                                     </span>
-                                </Link>
+                                </Link> */}
                             </nav>
                         </div>
                     </div>
@@ -70,8 +66,8 @@ const Etudiant = () => {
                 {/* Remove class [   border-gray-300 ] to remove dotted border */}
                 <div className="w-full h-full rounded   border-gray-300">
                     <Switch>
-                        {/* <Route path="/etudiant/reclamation" component={Reclamation}/>
-                        <Route path="/etudiant/categories" component={Categories}/>*/}
+                        {/* {/* <Route path="/etudiant/reclamation" component={Reclamation}/> */}
+                        <Route path="/etudiant/profile/:id" component={MonProfil} />
                         <Route path="/etudiant/exam/:course" component={ExamPage} />
                         <Route path="/etudiant/formation" component={MyCourse} />
                         <Route path="/etudiant/panier" component={Cart} />

@@ -77,7 +77,7 @@ export const addUserApi = (data) => async dispatch => {
         let result = await postApi('api/user/addnewuser', data);
         console.log("RESULT", result);
         dispatch(addUserSuccess());
-        dispatch(getUserListApi()) ; 
+        dispatch(getUserListApi());
     } catch (error) {
 
     }
@@ -136,6 +136,52 @@ export const deleteItemFromCart = (id, courseId) => async dispatch => {
     }
 }
 
+export const updateUserPasswordApi = (id, newPassword) => async dispatch => {
+    try {
+        let config = {
+            headers: {
+                'Authorization': localStorage.getItem('token')
+            }
+        }
+        let result = await updateApi('api/user/updatepwd/' + id, {
+            password: newPassword
+        }, config);
+        if (result) {
+            dispatch(getUserCart(id));
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Mot de passe est modifié avec success'
+
+            })
+        }
+    } catch (error) {
+
+    }
+}
+export const updateUserNameApi = (id, newName) => async dispatch => {
+    try {
+        let config = {
+            headers: {
+                'Authorization': localStorage.getItem('token')
+            }
+        }
+        let result = await updateApi('api/user/updatename/' + id, {
+            name: newName
+        }, config);
+        if (result) {
+            dispatch(getUserCart(id));
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Nom est modifié avec success'
+
+            })
+        }
+    } catch (error) {
+
+    }
+}
 export const confirmPayment = (id) => async dispatch => {
 
     try {

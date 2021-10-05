@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, Route, Switch, useRouteMatch, useLocation } from "react-router-dom";
+import MonProfil from "../MonProfil";
 import Categories from "./Categories";
 import Formation from "./Formation";
 import Reclamation from "./Reclamation";
@@ -41,7 +42,7 @@ const Admin = () => {
                                     <span className="flex-grow text-right">
                                     </span>
                                 </Link>
-                                <Link  to="/admin/categories" className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/admin/categories' ? 'bg-gray-100' : ''}`}>
+                                <Link to="/admin/categories" className={`"hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg ${location.pathname == '/admin/categories' ? 'bg-gray-100' : ''}`}>
                                     <span className="mx-4 text-lg font-normal">
                                         Categories
                                     </span>
@@ -61,8 +62,9 @@ const Admin = () => {
                 {/* Remove class [   border-gray-300 ] to remove dotted border */}
                 <div className="w-full h-full rounded   border-gray-300">
                     <Switch>
-                        <Route path="/admin/reclamation" component={Reclamation}/>
-                        <Route path="/admin/categories" component={Categories}/>
+                        <Route path="/admin/profile/:id" component={MonProfil} />
+                        <Route path="/admin/reclamation" component={Reclamation} />
+                        <Route path="/admin/categories" component={Categories} />
                         <Route path="/admin/formation" component={Formation} />
                         <Route path="/admin" component={User} />
                     </Switch>

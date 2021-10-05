@@ -11,6 +11,7 @@ import Formateur from './pages/formateur/Formateur'
 import Etudiant from './pages/etudiant/Etudiant'
 import Formation from './pages/admin/Formation'
 import FormationPage from './pages/Formation'
+import MonProfil from './pages/MonProfil'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Router>
         <Header />
         <Switch>
+        
           <PrivateRoute path="/etudiant" component={Etudiant} />
           <PrivateRoute path="/formateur" component={Formateur} />
           <PrivateRoute path="/admin" component={Admin} />
