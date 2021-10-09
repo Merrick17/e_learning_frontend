@@ -1,5 +1,5 @@
-import { getApi, postApi, removeApi } from "../../utils/apiHelpers"
-import { ADD_COURSE, DELETE_COURSE, GET_COURSE_LIST, GET_COURSE_LIST_SUCCESS } from "../actionTypes"
+import { getApi, postApi, removeApi, updateApi } from "../../utils/apiHelpers"
+import { ADD_COURSE, DELETE_COURSE, GET_COURSE_LIST, GET_COURSE_LIST_SUCCESS, UPDATE_COURSE } from "../actionTypes"
 
 const getCourseList = () => {
     return { type: GET_COURSE_LIST }
@@ -51,6 +51,22 @@ export const addCourseApi = (body) => async dispatch => {
 
     }
 }
+export const editCourseApi = (body, id) => async dispatch => {
+    try {
+        dispatch(addCourse());
+        let config = {
+            headers: {
+                'Authorization': localStorage.getItem('token')
+            }
+        }
+        let result = await updateApi('api/course/editcourse/' + id, body, config);
+        if (result.success) {
+            dispatch(getCourseApi());
+        }
+    } catch (error) {
+
+    }
+}
 const deleteCourse = () => {
     return {
         type: DELETE_COURSE
@@ -88,5 +104,12 @@ export const getCourseByUser = (id) => async dispatch => {
         console.log(result);
     } catch (error) {
 
+    }
+}
+
+export const updateCourse = (elm) => {
+    return {
+        type: UPDATE_COURSE,
+        payload: elm
     }
 }

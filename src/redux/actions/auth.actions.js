@@ -85,3 +85,25 @@ export const registerUserApi = (body) => async dispatch => {
         })
     }
 }
+
+export const resetPasswordApi = (body) => async dispatch => {
+
+    try {
+        let result = await postApi('api/user/forgot', body);
+        console.log("RESULT", result);
+        if (result) {
+            Swal.fire({
+                title: 'Success',
+                icon: 'success',
+                'text': 'Un email de récupération à été envoyé veuillez verifier !'
+            })
+
+        }
+    } catch (error) {
+        Swal.fire({
+            title: 'Error',
+            icon: 'error',
+            'text': error.message
+        })
+    }
+}

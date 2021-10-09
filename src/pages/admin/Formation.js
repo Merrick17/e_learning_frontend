@@ -3,14 +3,16 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import AddCourseModal from '../../components/AddCourseModal'
 import { getCategoriesApi } from '../../redux/actions/category.action';
-import { deleteCourseApi, getCourseApi } from '../../redux/actions/course.actions';
+import { deleteCourseApi, getCourseApi, updateCourse } from '../../redux/actions/course.actions';
 import { getUserListApi } from '../../redux/actions/user.actions';
 import { BASE_URL } from '../../utils/apiHelpers';
 import moment from 'moment';
 import Swal from 'sweetalert2';
+import EditCourseModal from '../../components/EditCourseModal';
 const Formation = () => {
 
     const [showAdd, setShowAdd] = useState(false);
+    const [showEdit, setShowEdit] = useState(false);
     const { courseList } = useSelector((state) => state.courses)
     const dispatch = useDispatch();
     const openAdd = () => {
@@ -18,6 +20,12 @@ const Formation = () => {
     };
     const closeAdd = () => {
         setShowAdd(false)
+    }
+    const openEdit = () => {
+        setShowEdit(true)
+    };
+    const closeEdit = () => {
+        setShowEdit(false);
     }
     useEffect(() => {
         dispatch(getUserListApi());
@@ -35,6 +43,7 @@ const Formation = () => {
 
             </div>
             <AddCourseModal show={showAdd} closeModal={closeAdd} />
+            <EditCourseModal show={showEdit} closeModal={closeEdit} />
             <div className="flex flex-col">
                 <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -89,8 +98,10 @@ const Formation = () => {
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex ">
                                                 <button type="button" className="py-2 mx-2 px-4 flex justify-center items-center  bg-green-500 hover:bg-green-600 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  w-1/2 h-12 rounded-lg " onClick={() => {
+                                                    console.log("running..")
                                                     // dispatch(editUser(elm));
-                                                    // setShowEditModal(true);
+                                                       dispatch(updateCourse(elm)) ; 
+                                                     setShowEdit(true) ; 
                                                 }}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -106,7 +117,7 @@ const Formation = () => {
                                                     }).then((result) => {
 
                                                         if (result.isConfirmed) {
-                                                             dispatch(deleteCourseApi(elm._id));
+                                                            dispatch(deleteCourseApi(elm._id));
                                                         }
                                                     })
 

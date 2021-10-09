@@ -1,8 +1,9 @@
-import { ADD_COURSE, GET_COURSE_LIST, GET_COURSE_LIST_SUCCESS } from "../actionTypes";
+import { ADD_COURSE, GET_COURSE_LIST, GET_COURSE_LIST_SUCCESS, UPDATE_COURSE } from "../actionTypes";
 
 const courseInitState = {
     loading: false,
-    courseList: []
+    courseList: [],
+    selectedCourseEdit: {}
 }
 
 const courseReducer = (state = courseInitState, action) => {
@@ -15,6 +16,8 @@ const courseReducer = (state = courseInitState, action) => {
             return { ...state, loading: true }
         case GET_COURSE_LIST_SUCCESS:
             return { ...state, loading: false, courseList: payload }
+        case UPDATE_COURSE:
+            return { ...state, selectedCourseEdit: payload }
 
         default:
             return state
