@@ -85,7 +85,7 @@ export const addUserApi = (data) => async dispatch => {
 export const editUserApi = (data, id) => async dispatch => {
     try {
         dispatch(addUser());
-        let result = await postApi('api/user/update' + id, data);
+        let result = await postApi('api/user/update/' + id, data);
         console.log("RESULT", result);
         dispatch(addUserSuccess());
         dispatch(getUserListApi());
