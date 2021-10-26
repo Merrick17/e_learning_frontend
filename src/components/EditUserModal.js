@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
-import { addUserApi } from '../redux/actions/user.actions';
+import { addUserApi, editUserApi } from '../redux/actions/user.actions';
 
 const EditUserModal = ({ show, closeModal }) => {
     const [userData, setUserData] = useState({
@@ -17,7 +17,7 @@ const EditUserModal = ({ show, closeModal }) => {
         setUserData({ ...userData, [event.target.name]: event.target.value })
     }
     const confirmAdd = () => {
-        dispatch(addUserApi(userData));
+        dispatch(editUserApi(userData,selectedUser._id));
         closeModal();
     }
     useEffect(() => {
@@ -46,7 +46,7 @@ const EditUserModal = ({ show, closeModal }) => {
                                 </div>
                                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                     <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                                        Ajouter Utilisateur
+                                        Modifier Utilisateur
                                     </h3>
                                     <div className="mt-5">
                                         <div className="flex flex-col justify-items-center items-center">
