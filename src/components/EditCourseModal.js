@@ -15,10 +15,11 @@ const EditCourseModal = ({ show, closeModal }) => {
     const [desc, setDesc] = useState('');
     const [Instructor, setInscructor] = useState('');
     const [categ, setSetCateg] = useState('');
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState(0); 
     useEffect(() => {
-        setInscructor(userState.list[0] ? userState.list[0]._id : "");
-        setSetCateg(categoryState.list[0] ? categoryState.list[0]._id : "");
+
+        setInscructor(selectedCourseEdit.Instructor ? selectedCourseEdit.Instructor._id : "");
+        setSetCateg(selectedCourseEdit.category ? selectedCourseEdit.category._id : "");
         setTitle(selectedCourseEdit.title ? selectedCourseEdit.title : "");
         setDesc(selectedCourseEdit.desc ? selectedCourseEdit.desc : "");
         setPrice(selectedCourseEdit.price ? selectedCourseEdit.price : 0);
@@ -38,7 +39,7 @@ const EditCourseModal = ({ show, closeModal }) => {
         formData.append('Instructor', Instructor);
         formData.append('category', categ);
         formData.append('price', price);
-        dispatch(editCourseApi(formData,selectedCourseEdit._id));
+        dispatch(editCourseApi(formData, selectedCourseEdit._id));
 
         closeModal();
     }

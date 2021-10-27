@@ -14,10 +14,12 @@ const EditUserModal = ({ show, closeModal }) => {
     const dispatch = useDispatch();
     const { selectedUser } = useSelector((state) => state.users)
     const onChangeText = (event) => {
-        setUserData({ ...userData, [event.target.name]: event.target.value })
+
+        setUserData({ ...userData, [event.target.name]: event.target.value });
+        console.log(userData);
     }
     const confirmAdd = () => {
-        dispatch(editUserApi(userData,selectedUser._id));
+        dispatch(editUserApi(userData, selectedUser._id));
         closeModal();
     }
     useEffect(() => {
@@ -64,9 +66,9 @@ const EditUserModal = ({ show, closeModal }) => {
                                             <div className=" relative mb-2 flex justify-items-center items-center" >
                                                 <label htmlFor="id_role " className="mr-6">Role:</label>
                                                 <select name="role" value={userData.role} className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" onChange={onChangeText}>
-                                                    <option value={0}>Admin</option>
-                                                    <option value={1}>Formateur</option>
-                                                    <option value={2}>Utilisateur</option>
+                                                    <option value={1}>Admin</option>
+                                                    <option value={2}>Formateur</option>
+                                                    <option value={0}>Utilisateur</option>
                                                 </select>
                                             </div>
                                         </div>

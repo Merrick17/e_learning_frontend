@@ -16,9 +16,10 @@ const AddCourseModal = ({ show, closeModal }) => {
     const [categ, setSetCateg] = useState('');
     const [price, setPrice] = useState(0);
     useEffect(() => {
-        setInscructor(userState.list[0] ? userState.list[0]._id : "");
+        let list = userState.list.filter(elm => elm.role === 2);
+        setInscructor(list[0] ? list[0]._id : "");
         setSetCateg(categoryState.list[0] ? categoryState.list[0]._id : "");
-    }, [userState,categoryState])
+    }, [userState, categoryState])
     const getInstructorList = () => {
         let list = userState.list.filter(elm => elm.role === 2);
         return list.map((elm) => {

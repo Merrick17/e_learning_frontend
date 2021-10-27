@@ -84,8 +84,18 @@ export const addUserApi = (data) => async dispatch => {
 }
 export const editUserApi = (data, id) => async dispatch => {
     try {
+        let { role, email, name } = data;
+        let body = {
+            role: Number(role),
+            email: email, name: name
+        }
         dispatch(addUser());
-        let result = await postApi('api/user/update/' + id, data);
+        let config = {
+            headers: {
+                'Authorization': localStorage.getItem('token')
+            }
+        }
+        let result = await postApi('api/user/update/' + id, body, config);
         console.log("RESULT", result);
         dispatch(addUserSuccess());
         dispatch(getUserListApi());

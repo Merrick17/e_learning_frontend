@@ -5,12 +5,14 @@ import { useDispatch } from 'react-redux';
 import { addCourseDetailsApi } from '../redux/actions/course.details.actions';
 import { addNewQuestionApi } from '../redux/actions/questions.actions';
 
-const AddCourseQuestion = ({ show, close }) => {
+const AddCourseQuestion = ({ show, close,selectedCourse }) => {
     const [title, setTitle] = useState("");
     const [rightAnswer, setRightAnswer] = useState('');
     const [score, setScore] = useState(0);
+    const [optionList, setOptionList] = useState([]);
+    const [option, setOption] = useState('');
     const dispatch = useDispatch();
-    const { selectedCourse } = useSelector((state) => state.detailsCourse)
+    // const { selectedCourse } = useSelector((state) => state.detailsCourse)
     const handleAddData = () => {
         let body = {
             "title": title,
@@ -22,16 +24,17 @@ const AddCourseQuestion = ({ show, close }) => {
 
         dispatch(addNewQuestionApi(body, selectedCourse));
         close();
+        console.log(optionList) ; 
         clearData();
     }
     const clearData = () => {
         setTitle("");
         setRightAnswer("");
         setScore("")
-        setOption([])
+        setOptionList([]); 
+        setOption(""); 
     }
-    const [optionList, setOptionList] = useState([]);
-    const [option, setOption] = useState('');
+    
     const handleAddOption = () => {
         let newList = [...optionList, option];
         setOptionList(newList);

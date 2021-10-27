@@ -30,7 +30,7 @@ const QuestionsList = () => {
     }, [])
     return (
         <div className="w-full h-full container flex flex-col">
-            <AddCourseQuestion show={showModal} close={handleClose} />
+            <AddCourseQuestion show={showModal} close={handleClose} selectedCourse={selectedCourse} />
             <EditCourseQuestion show={showEditModal} close={() => {
                 setShowEditModal(false);
             }} />
@@ -60,20 +60,25 @@ const QuestionsList = () => {
                             <button onClick={() => {
                                 console.log("Clicked Here")
                                 dispatch(getAllQuestionsApi(selectedCourse));
+                                console.log("selected Course", selectedCourse);
+
                             }} style={{ maxWidth: '16em' }} type="button" className="py-2 mx-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg " >
                                 Afficher details
                             </button>
                         </div>
 
                     </div>
-                    <div className="self-end">
-                        <div className="md:text-right text-left md:block">
-                            <button onClick={handleOpen} style={{ maxWidth: '16em' }} type="button" className="py-2 mx-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg " >
-                                Ajouter une question
-                            </button>
-                        </div>
+                    {
+                        selectedCourse !== "" ? <div className="self-end">
+                            <div className="md:text-right text-left md:block">
+                                <button onClick={handleOpen} style={{ maxWidth: '16em' }} type="button" className="py-2 mx-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg " >
+                                    Ajouter une question
+                                </button>
+                            </div>
 
-                    </div>
+                        </div> : <div></div>
+
+                    }
                 </div>
 
 

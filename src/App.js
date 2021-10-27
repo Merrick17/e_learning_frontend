@@ -12,6 +12,8 @@ import Etudiant from './pages/etudiant/Etudiant'
 import Formation from './pages/admin/Formation'
 import FormationPage from './pages/Formation'
 import MonProfil from './pages/MonProfil'
+import ResetPassword from './pages/ResetPassword'
+import ActivateAccount from './pages/ActivateAccount'
 
 const App = () => {
   return (
@@ -27,6 +29,8 @@ const App = () => {
           <Route path="/formation" component={FormationPage}/>
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
+          <Route path="/reset/:token" component={ResetPassword}/>
+          <Route path="/activate/:token" component={ActivateAccount}/>
           <Route path="/" component={Home} />
         </Switch>
         {/* <Footer /> */}

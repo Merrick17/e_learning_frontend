@@ -1,5 +1,5 @@
 import Swal from "sweetalert2"
-import { postApi } from "../../utils/apiHelpers"
+import { getApi, postApi } from "../../utils/apiHelpers"
 import { LOGIN_USER, LOGIN_USER_SUCCESS } from "../actionTypes"
 
 const loginUser = () => {
@@ -105,5 +105,54 @@ export const resetPasswordApi = (body) => async dispatch => {
             icon: 'error',
             'text': error.message
         })
+    }
+}
+export const recoverPasswordApi = (body,token,navigation)=> async dispatch =>{
+    try {
+        let config = {
+            headers: {
+                'Authorization': token
+            }
+        }
+        let result = await postApi('api/user/reset',body,config); 
+        console.log("result",result) ; 
+        if(result.success)
+        {
+            Swal.fire({
+                title:'success',
+                icon:'success',
+                text:'Mot de passe modifier',
+                
+            }).then((val)=>{
+                 if(val.isConfirmed)
+                 {
+                    navigation.replace('/login')
+                 }
+            })
+        }
+    } catch (error) {
+        
+    }
+}
+export const ActivateAccountApi = (token)=> async dispatch =>{
+    try {
+        let config = {
+            headers: {
+                'Authorization': token
+            }
+        }
+        let result = await getApi('api/user/activation',config); 
+        console.log("result",result) ; 
+        if(result.success)
+        {
+            Swal.fire({
+                title:'success',
+                icon:'success',
+                text:'Votre compte à été activé',
+                
+            })
+        }
+    } catch (error) {
+        
     }
 }
