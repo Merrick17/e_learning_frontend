@@ -47,12 +47,17 @@ const Header = () => {
                     </a>
                     <nav className="flex flex-wrap items-center justify-start text-base ">
                         <ul className="items-center inline-block list-none lg:inline-flex">
-                            <li>
-                                <Link to="/" className="px-4 py-1 mr-1 text-base text-blueGray-500 transition duration-500 ease-in-out transform rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:text-black ">FORMATIONS</Link>
-                            </li>
-                            <li>
-                                <Link to="/" className="px-4 py-1 mr-1 text-base text-blueGray-500 transition duration-500 ease-in-out transform rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:text-black ">CONTACT</Link>
-                            </li>
+                            {
+                                !verfiToken() && <li>
+                                    <Link to="/" className="px-4 py-1 mr-1 text-base text-blueGray-500 transition duration-500 ease-in-out transform rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:text-black ">FORMATIONS</Link>
+                                </li>
+                            }
+                            {!verfiToken() &&
+
+                                <li>
+                                    <Link to="/" className="px-4 py-1 mr-1 text-base text-blueGray-500 transition duration-500 ease-in-out transform rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:text-black ">CONTACT</Link>
+                                </li>
+                            }
                             {
                                 !verfiToken() && <li>
                                     <Link to="/login" className="px-4 py-1 mr-1 text-base text-blueGray-500 transition duration-500 ease-in-out transform rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:text-black ">CONNEXION</Link>
