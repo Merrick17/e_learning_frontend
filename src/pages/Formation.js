@@ -1,12 +1,13 @@
 import React, { Fragment } from "react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CoursCard from "../components/CoursCard";
 import { getCourseApi } from "../redux/actions/course.actions";
 
 const FormationPage = () => {
   const dispatch = useDispatch();
+  const { courseList } = useSelector((state) => state.courses);
   useEffect(() => {
     dispatch(getCourseApi());
   }, []);
@@ -179,12 +180,14 @@ const FormationPage = () => {
       <section className="text-blueGray-700 ">
         <div className="container items-center px-5 py-8 mx-auto lg:px-10">
           <div className="flex flex-wrap mb-12 text-left">
-            {dummyData.map((elm) => (
+            {courseList.map((elm) => (
               <CoursCard
-                name={"test product"}
-                description={"test desc"}
-                imgUrl={elm.url}
-                price={20}
+                name={elm.title}
+                description={elm.desc}
+                imgUrl={elm.courseImage}
+                price={elm.price}
+                category={elm.category.name}
+                totalStudent={elm.subscribedStudents.length}
               />
             ))}
           </div>
