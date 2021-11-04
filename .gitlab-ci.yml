@@ -1,0 +1,13 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - echo "building image"
+    - docker build -t vgwdev/elearning_frontend:latest .
+deploy:
+  stage: deploy
+  script:
+    - docker run -d -p 3500:80 vgwdev/elearning_frontend:latest
